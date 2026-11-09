@@ -2,6 +2,10 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'JDK17'
+    }
+
     environment {
         APP_NAME = 'Jenkins-TP4'
         DEPLOY_ENV = 'development'
