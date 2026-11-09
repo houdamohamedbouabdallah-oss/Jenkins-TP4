@@ -13,14 +13,15 @@ pipeline {
                 echo 'Testing the application...'
             }
         }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
-            }
-        }
+stage('Deploy') {
+    when {
+        branch 'main'
     }
-
+    steps {
+        echo 'Deploying the application...'
+    }
+}            }
+        
     post {
         success {
             echo 'Pipeline completed successfully!'
