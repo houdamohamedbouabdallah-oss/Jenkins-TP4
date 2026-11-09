@@ -1,9 +1,18 @@
+
 pipeline {
     agent any
+
+    environment {
+        APP_NAME = 'Jenkins-TP4'
+        DEPLOY_ENV = 'development'
+    }
 
     stages {
         stage('Build') {
             steps {
+                echo "Application: ${env.APP_NAME}"
+                echo "Environment: ${env.DEPLOY_ENV}"
+                echo "Build Number: ${env.BUILD_NUMBER}"
                 echo 'Building the application...'
             }
         }
@@ -21,7 +30,7 @@ pipeline {
                 }
             }
             steps {
-                echo 'Deploying the application...'
+                echo "Deploying ${env.APP_NAME} to ${env.DEPLOY_ENV}..."
             }
         }
     }
