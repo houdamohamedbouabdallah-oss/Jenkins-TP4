@@ -31,13 +31,20 @@ pipeline {
                 echo "Environment: ${params.DEPLOY_ENV}"
                 echo "Version: ${params.APP_VERSION}"
                 echo "Build Number: ${env.BUILD_NUMBER}"
-                echo 'Building the application...'
+
+                script {
+                    def externalScript = load 'script.groovy'
+                    externalScript.buildApp()
+                }
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing the application...'
+                script {
+                    def externalScript = load 'script.groovy'
+                    externalScript.testApp()
+                }
             }
         }
 
